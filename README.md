@@ -1,10 +1,16 @@
-
 # JavaScript Interview Questions
 
+### What are the difference between relative path and absolute path?
+
+- A relative path describes the location of a file relative to the current (working) directory.
+- An absolute path describes the location from the root directory.
+
 ### What are the data types in JavaScript?
+
 JavaScript has several data types. Here's a brief overview:
 
 #### 1.1 Primitive Types
+
 - **String**: Represents textual data, e.g., `'hello'`.
 - **Number**: Represents both integer and floating-point numbers, e.g., `42` or `3.14`.
 - **BigInt**: Represents integers with arbitrary precision, e.g., `9007199254740991n`.
@@ -14,6 +20,7 @@ JavaScript has several data types. Here's a brief overview:
 - **Symbol**: Represents a unique identifier.
 
 #### 1.2 Object Types
+
 - **Object**: The most basic structure for storing data in key-value pairs, e.g., `{ name: 'John', age: 30 }`.
 - **Array**: A global object used to store a list of elements, e.g., `[1, 2, 3]`.
 - **Function**: JavaScript functions are first-class objects, meaning they can have properties and methods just like any other object.
@@ -32,22 +39,22 @@ In **Summary**, `undefined` typically means a variable has been declared but not
 
 ### What is the difference between == and === in JavaScript?
 
-| Operator | Type            | Description                                                                                   |
-|----------|-----------------|-----------------------------------------------------------------------------------------------|
-| `=`      | Assignment      | Assigns a value to a variable.                                                                |
-| `==`     | Equality        | Compares two values for equality, performing type coercion if necessary.                       |
+| Operator | Type            | Description                                                                                                       |
+| -------- | --------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `=`      | Assignment      | Assigns a value to a variable.                                                                                    |
+| `==`     | Equality        | Compares two values for equality, performing type coercion if necessary.                                          |
 | `===`    | Strict Equality | Compares two values for equality, without performing type coercion. Requires both value and type to be identical. |
-
-
 
 ### What is the difference between let, var, and const in JavaScript?
 
 - **`var`**:
+
   - Function-scoped or globally-scoped.
   - Can be re-declared and updated.
   - Hoisted to the top of its scope and initialized with `undefined`.
 
 - **`let`**:
+
   - Block-scoped.
   - Can be updated but not re-declared within the same scope.
   - Not initialized until their definition is evaluated.
@@ -57,14 +64,13 @@ In **Summary**, `undefined` typically means a variable has been declared but not
   - Cannot be updated or re-declared.
   - Must be initialized at the time of declaration.
 
-| Feature               | `var`                          | `let`                          | `const`                        |
-|-----------------------|--------------------------------|--------------------------------|--------------------------------|
-| Scope                 | Function or global             | Block                          | Block                          |
-| Re-declaration        | Allowed in the same scope      | Not allowed in the same scope  | Not allowed in the same scope  |
-| Update                | Allowed                        | Allowed                        | Not allowed                    |
-| Hoisting              | Yes, initialized with `undefined` | No, Temporal Dead Zone (TDZ)   | No, Temporal Dead Zone (TDZ)   |
-| Initialization Required | No                             | No                             | Yes, at declaration            |
-
+| Feature                 | `var`                             | `let`                         | `const`                       |
+| ----------------------- | --------------------------------- | ----------------------------- | ----------------------------- |
+| Scope                   | Function or global                | Block                         | Block                         |
+| Re-declaration          | Allowed in the same scope         | Not allowed in the same scope | Not allowed in the same scope |
+| Update                  | Allowed                           | Allowed                       | Not allowed                   |
+| Hoisting                | Yes, initialized with `undefined` | No, Temporal Dead Zone (TDZ)  | No, Temporal Dead Zone (TDZ)  |
+| Initialization Required | No                                | No                            | Yes, at declaration           |
 
 ### What is Temporal Dead Zone?
 
@@ -116,15 +122,15 @@ A closure in JavaScript is a feature where an inner function has access to the o
 
 ```javascript
 function outerFunction(outerVariable) {
-    return function innerFunction(innerVariable) {
-        // This inner function has access to the outerVariable, its own innerVariable, and global variables
-        console.log('Outer Variable: ' + outerVariable);
-        console.log('Inner Variable: ' + innerVariable);
-    };
+  return function innerFunction(innerVariable) {
+    // This inner function has access to the outerVariable, its own innerVariable, and global variables
+    console.log("Outer Variable: " + outerVariable);
+    console.log("Inner Variable: " + innerVariable);
+  };
 }
 
-const newFunction = outerFunction('outside');
-newFunction('inside'); // Logs: Outer Variable: outside, Inner Variable: inside
+const newFunction = outerFunction("outside");
+newFunction("inside"); // Logs: Outer Variable: outside, Inner Variable: inside
 ```
 
 In this example, `innerFunction` is a closure that has access to `outerVariable` from `outerFunction`, even after `outerFunction` has finished execution.
@@ -135,12 +141,20 @@ In this example, `innerFunction` is a closure that has access to `outerVariable`
 
 ```javascript
 function createCounter() {
-    let count = 0;
-    return {
-        increment: function() { count += 1; return count; },
-        decrement: function() { count -= 1; return count; },
-        getCount: function() { return count; }
-    };
+  let count = 0;
+  return {
+    increment: function () {
+      count += 1;
+      return count;
+    },
+    decrement: function () {
+      count -= 1;
+      return count;
+    },
+    getCount: function () {
+      return count;
+    },
+  };
 }
 
 const counter = createCounter();
@@ -152,9 +166,9 @@ console.log(counter.getCount()); // 1
 
 ```javascript
 function multiply(a) {
-    return function(b) {
-        return a * b;
-    };
+  return function (b) {
+    return a * b;
+  };
 }
 
 const double = multiply(2);
@@ -165,28 +179,24 @@ console.log(double(5)); // 10
 
 ```javascript
 function setupAlertOnClick(elementId, message) {
-    document.getElementById(elementId).addEventListener('click', function() {
-        alert(message);
-    });
+  document.getElementById(elementId).addEventListener("click", function () {
+    alert(message);
+  });
 }
 
-setupAlertOnClick('myButton', 'Button clicked!');
+setupAlertOnClick("myButton", "Button clicked!");
 ```
 
 4. **Module Pattern**: Before ES6 modules, closures were used to create modules by encapsulating a set of functions and variables to expose only public methods and properties while keeping others private.
 
 ```javascript
-var myModule
-
- =
-
- (function() {
-    var privateVar = 'I am private';
-    return {
-        publicMethod: function() {
-            console.log('Accessing: ' + privateVar);
-        }
-    };
+var myModule = (function () {
+  var privateVar = "I am private";
+  return {
+    publicMethod: function () {
+      console.log("Accessing: " + privateVar);
+    },
+  };
 })();
 
 myModule.publicMethod(); // Accessing: I am private
@@ -194,10 +204,10 @@ myModule.publicMethod(); // Accessing: I am private
 
 Closures are a fundamental and powerful feature of JavaScript, enabling various design patterns and techniques that enhance encapsulation, data privacy, and functional programming concepts.
 
-
 ### What is the difference between map and forEach in JavaScript?
 
 - **`map`**:
+
   - Returns a new array containing the results of applying a function to each element of the original array.
   - Does not modify the original array.
   - Ideal for transformations or computations where the results are collected.
@@ -210,7 +220,9 @@ Closures are a fundamental and powerful feature of JavaScript, enabling various 
   - Used for executing side effects for each element in the array.
 
 ### What is the difference between a mutable and immutable object in JavaScript?
+
 - **Mutable Object**:
+
   - Can be changed or modified after it's created.
   - Operations on the object can alter its properties or contents without creating a new object.
   - Examples include objects created with `Object`, `Array`, `Function`, etc., where you can change properties, elements, or function properties after creation.
@@ -222,6 +234,7 @@ Closures are a fundamental and powerful feature of JavaScript, enabling various 
   - Libraries like Immutable.js provide immutable data structures (e.g., List, Map) that enforce immutability for complex objects.
 
 ### How to error handling in the javascript?
+
 Error handling in JavaScript can be achieved through several mechanisms, including `try...catch` blocks, error handling in Promises, and using `async`/`await` with `try...catch`. Here's a summary:
 
 ### Using `try...catch`:
@@ -244,10 +257,10 @@ try {
 
 ```javascript
 doSomethingAsync()
-  .then(result => {
+  .then((result) => {
     // Handle successful result
   })
-  .catch(error => {
+  .catch((error) => {
     // Handle error
   });
 ```
@@ -281,7 +294,9 @@ async function asyncFunction() {
 Error handling is crucial for creating robust JavaScript applications, allowing you to gracefully handle exceptions and maintain a good user experience.
 
 ### What is the difference between a spread operator and a rest parameter in JavaScript?
+
 - **Spread Operator (`...`)**:
+
   - Used to expand or spread an iterable (like an array, string, or object) into individual elements or properties.
   - Commonly used in function calls, array literals, and object literals.
   - Can be used to make shallow copies of objects or arrays, merge objects or arrays, and spread elements in array or object literals.
@@ -291,22 +306,25 @@ Error handling is crucial for creating robust JavaScript applications, allowing 
   - Used in the function declaration to gather arguments into an array.
   - Provides a way to handle function parameters more flexibly, enabling functions to accept any number of arguments.
 
-###  What is the output of the code snippet below?
+### What is the output of the code snippet below?
+
 ```javascript
 let str = "Hello World!";
 let split = str.split(" ");
-for(var i=0; i<split.length; i++){
-  console.log(split[i])
+for (var i = 0; i < split.length; i++) {
+  console.log(split[i]);
 }
 ```
+
 **Answer**
+
 ```javascript
 Hello
 World!
 ```
 
-
 ### What is the output of the code snippet below?
+
 ```javascript
 let arr = [1, 2, 3, 4, 5];
 let sum = arr.reduce((acc, curr) => acc + curr, 0);
@@ -314,39 +332,47 @@ console.log(sum); // ans: 15
 ```
 
 ### What is the output of the code snippet below?
+
 ```javascript
-let obj = {a: 1, b: 2, c: 3};
+let obj = { a: 1, b: 2, c: 3 };
 let keys = Object.keys(obj);
 console.log(keys); // ans : ["a", "b", "c"]
 ```
 
 ### What is the output of the code snippet below?
+
 ```javascript
 let arr = [1, 2, 3, 4, 5];
-let filtered = arr.filter(num => num % 2 === 0);
+let filtered = arr.filter((num) => num % 2 === 0);
 console.log(filtered); // ans : [2,4]
 ```
 
 ### What is the output of the code snippet below?
+
 ```javascript
 let arr = [1, 2, 3, 4, 5];
-let mapped = arr.map(num => num * 2);
-console.log(mapped);// ans : [2, 4, 6, 8, 10]
+let mapped = arr.map((num) => num * 2);
+console.log(mapped); // ans : [2, 4, 6, 8, 10]
 ```
 
 ### What is the output of the code snippet below?
+
 ```javascript
 let arr = [1, 2, 3, 4, 5];
 let sliced = arr.slice(1, 3);
 console.log(sliced);
 ```
+
 ### What is the output of the code snippet below?
+
 ```javascript
 let arr = [1, 2, 3, 4, 5];
 let reversed = arr.reverse();
 console.log(reversed);
 ```
+
 ### What is the output of the code snippet below?
+
 ```javascript
 let arr = [1, 2, 3, 4, 5];
 let sorted = arr.sort((a, b) => b - a);
@@ -354,6 +380,7 @@ console.log(sorted);
 ```
 
 ### What is the output of the code snippet below?
+
 ```javascript
 let arr = [1, 2, 3, 4, 5];
 let joined = arr.join("-");
@@ -361,8 +388,11 @@ console.log(joined);
 ```
 
 ### What is the output of the code snippet below?
+
 ```javascript
 let arr = [1, 2, 3, 4, 5];
 let popped = arr.pop();
 console.log(popped);
 ```
+
+An absolute path describes the location from the root directory.
